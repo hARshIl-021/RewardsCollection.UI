@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Rewards Collection Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>🎁 Rewards Collection Portal</h1>
+
+        <p>
+            Azure-powered reward card validation,
+            AI recommendations, scan history,
+            and reward management platform.
+        </p>
+
+    </div>
+
+    <div class="main-grid">
+
+        <!-- Scan Card Section -->
+
+        <div class="card">
+
+            <h2>📷 Scan Reward Card</h2>
+
+            <input type="file" id="cardFile">
+
+            <button onclick="analyzeCard()">
+                Analyze Card
+            </button>
+
+            <div id="scanResult"></div>
+
+        </div>
+
+        <!-- AI Recommendation Section -->
+
+        <div class="card">
+
+            <h2>🤖 AI Recommendation</h2>
+
+            <input
+                type="text"
+                id="cardNumber"
+                placeholder="Enter Card Number (Example: OLG001)">
+
+            <button onclick="getRecommendation()">
+                Get Recommendation
+            </button>
+
+            <div id="recommendation"></div>
+
+        </div>
+
+        <!-- Dashboard Section -->
+
+        <div class="card full-width">
+
+            <h2>📊 Admin Dashboard</h2>
+
+            <button onclick="loadStats()">
+                Load Dashboard Statistics
+            </button>
+
+            <div id="stats"></div>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        Rewards Collection Portal |
+        Azure App Service |
+        Azure SQL Database |
+        Azure Blob Storage |
+        Azure AI Vision |
+        Azure OpenAI GPT-5 Nano
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
