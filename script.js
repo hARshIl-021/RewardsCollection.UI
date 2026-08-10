@@ -344,6 +344,5 @@ function formatTime(iso) {
 }
 
 function categoryEmoji(cat) {
-    const map = { Casino: "🎰", Dining: "🍽️", Travel: "✈️", Entertainment: "🎭", Hotel: "🏨" };
-    return map[cat] || "🎁";
+    return "";
 }
