@@ -2,7 +2,7 @@ const apiBase = "https://olgrewards-api-gddsgnhkdfhma0h5.canadacentral-01.azurew
 
 let selectedRewardId = null;
 
-// ─── Customer: Analyze Card ───────────────────────────────────────────────────
+// â”€â”€â”€ Customer: Analyze Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function analyzeCard() {
     const file = document.getElementById("cardFile").files[0];
@@ -39,7 +39,7 @@ async function analyzeCard() {
     }
 }
 
-// ─── Customer: AI Recommendation ─────────────────────────────────────────────
+// â”€â”€â”€ Customer: AI Recommendation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function getRecommendation() {
     const cardNumber = document.getElementById("cardNumber").value.trim();
@@ -58,20 +58,20 @@ async function getRecommendation() {
 
         document.getElementById("recommendation").innerHTML = `
             <div class="ai-box">
-                <h3>🤖 AI Recommendation</h3>
+                <h3>ðŸ¤– AI Recommendation</h3>
                 <p><strong>Card:</strong> ${data.cardNumber} &nbsp;|&nbsp; <strong>Points:</strong> ${data.points}
                 ${data.preferredCategory ? ` &nbsp;|&nbsp; <strong>Pref:</strong> ${data.preferredCategory}` : ""}</p>
                 <p style="margin-top:8px;color:#555">${rec.summary}</p>
                 <div class="ai-recommendation">
                     <div class="rec-card">
-                        <div class="rec-label">⭐ Best Recommendation</div>
+                        <div class="rec-label">â­ Best Recommendation</div>
                         <h4>${rec.bestReward}</h4>
                         <span class="category-badge cat-${rec.bestCategory}">${rec.bestCategory}</span>
                         <p>${rec.bestRewardReason}</p>
                     </div>
                     ${rec.alternativeReward ? `
                     <div class="rec-card">
-                        <div class="rec-label">💡 Alternative</div>
+                        <div class="rec-label">ðŸ’¡ Alternative</div>
                         <h4>${rec.alternativeReward}</h4>
                         <span class="category-badge cat-${rec.alternativeCategory}">${rec.alternativeCategory}</span>
                         <p>${rec.alternativeReason}</p>
@@ -83,7 +83,7 @@ async function getRecommendation() {
     }
 }
 
-// ─── Customer: Rewards Catalog ────────────────────────────────────────────────
+// â”€â”€â”€ Customer: Rewards Catalog â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadRewardsCatalog(category = "") {
     const url = category ? `${apiBase}/api/Rewards?category=${encodeURIComponent(category)}` : `${apiBase}/api/Rewards`;
@@ -136,12 +136,12 @@ function selectReward(id, name, points, category) {
         <div class="ai-box">
             <strong>Selected:</strong> ${name}
             <span class="category-badge cat-${category}" style="margin-left:8px">${category}</span>
-            — ${points.toLocaleString()} pts
+            â€” ${points.toLocaleString()} pts
         </div>`;
     document.getElementById("redeemResult").innerHTML = "";
 }
 
-// ─── Customer: Redeem ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Customer: Redeem â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function redeemReward() {
     const cardNumber = document.getElementById("redeemCardNumber").value.trim();
@@ -164,7 +164,7 @@ async function redeemReward() {
 
         document.getElementById("redeemResult").innerHTML = `
             <div class="ai-box" style="border-color:#107c10;background:#f0fdf0">
-                <span class="success">✅ ${data.message}</span>
+                <span class="success">âœ… ${data.message}</span>
                 <p><strong>Reward:</strong> ${data.reward} (${data.category})</p>
                 <p><strong>Points Used:</strong> ${data.pointsUsed.toLocaleString()}</p>
                 <p><strong>Remaining Points:</strong> ${data.remainingPoints.toLocaleString()}</p>
@@ -176,11 +176,11 @@ async function redeemReward() {
         loadRewardsCatalog();
 
     } catch (err) {
-        document.getElementById("redeemResult").innerHTML = `<span class="error">❌ ${err.message}</span>`;
+        document.getElementById("redeemResult").innerHTML = `<span class="error">âŒ ${err.message}</span>`;
     }
 }
 
-// ─── Customer: Save Preference ────────────────────────────────────────────────
+// â”€â”€â”€ Customer: Save Preference â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function savePreference() {
     const cardNumber = document.getElementById("redeemCardNumber").value.trim();
@@ -201,7 +201,7 @@ async function savePreference() {
     }
 }
 
-// ─── Admin: Platform Stats ────────────────────────────────────────────────────
+// â”€â”€â”€ Admin: Platform Stats â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadStats() {
     try {
@@ -223,7 +223,7 @@ async function loadStats() {
     }
 }
 
-// ─── Admin: Redemption Metrics ────────────────────────────────────────────────
+// â”€â”€â”€ Admin: Redemption Metrics â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadRedemptionStats() {
     try {
@@ -245,7 +245,7 @@ async function loadRedemptionStats() {
     }
 }
 
-// ─── Admin: Recent Activity ───────────────────────────────────────────────────
+// â”€â”€â”€ Admin: Recent Activity â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadRecentActivity() {
     try {
@@ -256,7 +256,7 @@ async function loadRecentActivity() {
         document.getElementById("recentActivity").innerHTML = items.length
             ? items.map(item => `
                 <div class="activity-item">
-                    <div class="activity-icon ${item.type.toLowerCase()}">${item.type === "Scan" ? "📷" : "🎟️"}</div>
+                    <div class="activity-icon ${item.type.toLowerCase()}">${item.type === "Scan" ? "ðŸ“·" : "ðŸŽŸï¸"}</div>
                     <div class="activity-info">
                         <strong>${item.cardNumber}</strong>
                         <span>${item.description}</span>
@@ -269,7 +269,7 @@ async function loadRecentActivity() {
     }
 }
 
-// ─── Admin: Top Rewards ───────────────────────────────────────────────────────
+// â”€â”€â”€ Admin: Top Rewards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadTopRewards() {
     try {
@@ -283,9 +283,9 @@ async function loadTopRewards() {
                     <span class="rank">#${i + 1}</span>
                     <div class="top-reward-info">
                         <strong>${item.rewardName}</strong>
-                        <span><span class="category-badge cat-${item.category}">${item.category}</span> — ${item.totalPointsRedeemed.toLocaleString()} pts redeemed</span>
+                        <span><span class="category-badge cat-${item.category}">${item.category}</span> â€” ${item.totalPointsRedeemed.toLocaleString()} pts redeemed</span>
                     </div>
-                    <span class="top-reward-count">${item.count}×</span>
+                    <span class="top-reward-count">${item.count}Ã—</span>
                 </div>`).join("")
             : `<p style="color:#888">No redemptions yet.</p>`;
     } catch (err) {
@@ -293,7 +293,7 @@ async function loadTopRewards() {
     }
 }
 
-// ─── Admin: Active Customers ──────────────────────────────────────────────────
+// â”€â”€â”€ Admin: Active Customers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadActiveCustomers() {
     try {
@@ -307,7 +307,7 @@ async function loadActiveCustomers() {
                     <span class="rank">#${i + 1}</span>
                     <div class="top-reward-info">
                         <strong>${c.cardNumber}</strong>
-                        <span>Last scan: ${formatTime(c.lastScan)} — ${c.latestPoints?.toLocaleString() ?? 0} pts</span>
+                        <span>Last scan: ${formatTime(c.lastScan)} â€” ${c.latestPoints?.toLocaleString() ?? 0} pts</span>
                     </div>
                     <span class="top-reward-count">${c.scanCount} scans</span>
                 </div>`).join("") + `</div>`
@@ -317,7 +317,7 @@ async function loadActiveCustomers() {
     }
 }
 
-// ─── Admin: Recent Scans (legacy) ────────────────────────────────────────────
+// â”€â”€â”€ Admin: Recent Scans (legacy) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadRecentScans() {
     try {
@@ -337,34 +337,17 @@ async function loadRecentScans() {
     }
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function formatTime(iso) {
     return new Date(iso).toLocaleString();
 }
 
 function categoryEmoji(cat) {
-    const map = { Casino: "🎰", Dining: "🍽️", Travel: "✈️", Entertainment: "🎭", Hotel: "🏨" };
-    return map[cat] || "🎁";
+    const map = { Casino: "ðŸŽ°", Dining: "ðŸ½ï¸", Travel: "âœˆï¸", Entertainment: "ðŸŽ­", Hotel: "ðŸ¨" };
+    return map[cat] || "ðŸŽ";
 }
 
-
-async function analyzeCard() {
-
-    try {
-
-        const file =
-            document.getElementById("cardFile").files[0];
-
-        if (!file) {
-
-            document.getElementById("scanResult").innerHTML =
-                `<p class="error">Please select a file first.</p>`;
-
-            return;
-        }
-
-        const formData = new FormData();
 
         formData.append("file", file);
 
@@ -448,7 +431,7 @@ async function getRecommendation() {
         `
             <div class="ai-box">
 
-                <h3>🤖 AI Recommendation</h3>
+                <h3>ðŸ¤– AI Recommendation</h3>
 
                 <p>${data.recommendation}</p>
 
