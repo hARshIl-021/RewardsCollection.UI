@@ -9,12 +9,12 @@
 <body>
 
 <nav>
-    <a href="index.html" class="active">ðŸ  Home</a>
-    <a href="admin.html">ðŸ“Š Admin Dashboard</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="admin.html">Admin Dashboard</a>
 </nav>
 
 <div class="card">
-    <h1>ðŸŽ Rewards Collection Portal</h1>
+    <h1>Rewards Collection Portal</h1>
     <p>Azure-powered reward card validation, AI recommendations, and reward management platform.</p>
 </div>
 
@@ -22,7 +22,7 @@
 
     <!-- Scan Card -->
     <div class="card">
-        <h2>ðŸ“· Scan Reward Card</h2>
+        <h2>Scan Reward Card</h2>
         <input type="file" id="cardFile" accept="image/*">
         <button onclick="analyzeCard()">Analyze Card</button>
         <div id="scanResult"></div>
@@ -30,7 +30,7 @@
 
     <!-- AI Recommendation -->
     <div class="card">
-        <h2>ðŸ¤– AI Recommendation</h2>
+        <h2>AI Recommendation</h2>
         <input type="text" id="cardNumber" placeholder="Enter Card Number (e.g. RC001)">
         <button onclick="getRecommendation()">Get Recommendation</button>
         <div id="recommendation"></div>
@@ -38,7 +38,7 @@
 
     <!-- Rewards Catalog -->
     <div class="card full-width">
-        <h2>ðŸ† Rewards Catalog</h2>
+        <h2>Rewards Catalog</h2>
         <div class="filter-pills" id="categoryFilters">
             <span class="pill active" onclick="filterRewards(this, '')">All</span>
         </div>
@@ -49,7 +49,7 @@
 
     <!-- Redeem -->
     <div class="card full-width">
-        <h2>ðŸŽŸï¸ Redeem a Reward</h2>
+        <h2>Redeem a Reward</h2>
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
             <div style="flex:1;min-width:160px">
                 <label style="font-size:13px;color:#555;display:block;margin-bottom:4px">Card Number</label>
@@ -59,11 +59,11 @@
                 <label style="font-size:13px;color:#555;display:block;margin-bottom:4px">Preferred Category</label>
                 <select id="preferredCategory" style="margin-bottom:0">
                     <option value="">Select category</option>
-                    <option value="Casino">ðŸŽ° Casino</option>
-                    <option value="Dining">ðŸ½ï¸ Dining</option>
-                    <option value="Travel">âœˆï¸ Travel</option>
-                    <option value="Entertainment">ðŸŽ­ Entertainment</option>
-                    <option value="Hotel">ðŸ¨ Hotel</option>
+                    <option value="Casino">🎰 Casino</option>
+                    <option value="Dining">🍽️ Dining</option>
+                    <option value="Travel">✈️ Travel</option>
+                    <option value="Entertainment">🎭 Entertainment</option>
+                    <option value="Hotel">🏨 Hotel</option>
                 </select>
             </div>
             <button class="secondary" onclick="savePreference()">Save Preference</button>
