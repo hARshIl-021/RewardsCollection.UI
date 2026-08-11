@@ -160,7 +160,7 @@ async function redeemReward() {
             { method: "POST" }
         );
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Redemption failed.");
+        if (!res.ok) throw new Error(data.error || data.Error || "Redemption failed.");
 
         document.getElementById("redeemResult").innerHTML = `
             <div class="ai-box" style="border-color:#107c10;background:#f0fdf0">
