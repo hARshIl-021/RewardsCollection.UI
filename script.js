@@ -19,23 +19,71 @@ async function analyzeCard() {
         if (!res.ok) throw new Error(await res.text() || "Unable to analyze reward card.");
         const data = await res.json();
 
-        let rewardsHtml = data.availableRewards.length
-            ? data.availableRewards.map(r => `
-                <div class="reward-item">
-                    <h4>${r.rewardName}</h4>
-                    <span class="category-badge cat-${r.category}">${r.category}</span>
-                    <p>${r.requiredPoints} pts required</p>
-                </div>`).join("")
-            : `<p style="color:#888;margin-top:8px">No rewards available yet. Keep earning points!</p>`;
+        document.getElementById("scanResult").innerHTML = `
+            <div class="ai-box" style="margin-top:12px">
+                <p><strong>Card:</strong> ${data.cardNumber} &nbsp;|&nbsp; <strong>Points:</strong> ${data.points}</p>
+                <p style="color:#888">Getting AI recommendation...</p>
+            </div>`;
+
+        // Auto-trigger AI recommendation after successful scan
+        await getRecommendationForCard(data.cardNumber);
+    } catch (err) {
+        document.getElementById("scanResult").innerHTML = `<span class="error">${err.message}</span>`;
+    }
+}
+
+async function getRecommendationForCard(cardNumber) {
+    try {
+        const res = await fetch(`${apiBase}/api/AI/recommend/${encodeURIComponent(cardNumber)}`);
+        if (!res.ok) throw new Error(await res.text() || "Unable to get AI recommendation.");
+        const data = await res.json();
+        const rec = data.recommendation;
 
         document.getElementById("scanResult").innerHTML = `
             <div class="ai-box" style="margin-top:12px">
                 <p><strong>Card:</strong> ${data.cardNumber} &nbsp;|&nbsp; <strong>Points:</strong> ${data.points}</p>
-                <h4 style="margin-top:10px;color:#0078d4">Available Rewards</h4>
-                ${rewardsHtml}
+                <p style="margin-top:8px;color:#555">${rec.summary}</p>
+                <div class="ai-recommendation">
+                    <div class="rec-card">
+                        <div class="rec-label">Best Recommendation</div>
+                        <h4>${rec.bestReward}</h4>
+                        <span class="category-badge cat-${rec.bestCategory}">${rec.bestCategory}</span>
+                        <p>${rec.bestRewardReason}</p>
+                    </div>
+                    ${rec.alternativeReward ? `
+                    <div class="rec-card">
+                        <div class="rec-label">Alternative</div>
+                        <h4>${rec.alternativeReward}</h4>
+                        <span class="category-badge cat-${rec.alternativeCategory}">${rec.alternativeCategory}</span>
+                        <p>${rec.alternativeReason}</p>
+                    </div>` : ""}
+                </div>
+                <div style="margin-top:14px;padding-top:12px;border-top:1px solid #eee">
+                    <p style="font-size:13px;color:#555;margin-bottom:6px">Ask AI anything about your rewards:</p>
+                    <div style="display:flex;gap:8px">
+                        <input type="text" id="chatInput" placeholder="e.g. Which reward saves me the most?" style="flex:1;margin:0">
+                        <button onclick="sendChat('${data.cardNumber}')" style="margin:0;padding:8px 14px">Ask</button>
+                    </div>
+                    <div id="chatResponse" style="margin-top:8px"></div>
+                </div>
             </div>`;
     } catch (err) {
-        document.getElementById("scanResult").innerHTML = `<span class="error">${err.message}</span>`;
+        document.getElementById("scanResult").innerHTML += `<span class="error">${err.message}</span>`;
+    }
+}
+
+async function sendChat(cardNumber) {
+    const question = document.getElementById("chatInput").value.trim();
+    if (!question) return;
+    document.getElementById("chatResponse").innerHTML = `<p style="color:#888">Thinking...</p>`;
+    try {
+        const res = await fetch(`${apiBase}/api/AI/chat?cardNumber=${encodeURIComponent(cardNumber)}&question=${encodeURIComponent(question)}`);
+        if (!res.ok) throw new Error("Chat failed.");
+        const data = await res.json();
+        document.getElementById("chatResponse").innerHTML = `<div class="ai-box" style="margin-top:4px;padding:10px"><p>${data.answer}</p></div>`;
+        document.getElementById("chatInput").value = "";
+    } catch (err) {
+        document.getElementById("chatResponse").innerHTML = `<span class="error">${err.message}</span>`;
     }
 }
 
