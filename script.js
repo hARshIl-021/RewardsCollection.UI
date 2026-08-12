@@ -43,6 +43,7 @@ async function getRecommendationForCard(cardNumber) {
             <div class="ai-box" style="margin-top:12px">
                 <p><strong>Card:</strong> ${data.cardNumber} &nbsp;|&nbsp; <strong>Points:</strong> ${data.points}</p>
                 <p style="margin-top:8px;color:#555">${rec.summary}</p>
+                <h4 style="margin-top:12px;color:#0078d4">Recommended Rewards</h4>
                 <div class="ai-recommendation">
                     <div class="rec-card">
                         <div class="rec-label">Best Recommendation</div>
