@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Collection Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="admin.html">Admin Dashboard</a>
+</nav>
+
+<div class="card">
+    <h1>Rewards Collection Portal</h1>
+    <p>Azure-powered reward card validation, AI recommendations, and reward management platform.</p>
+</div>
+
+<div class="main-grid">
+
+    <!-- Scan Card -->
+    <div class="card">
+        <h2>Scan Reward Card</h2>
+        <input type="file" id="cardFile" accept="image/*">
+        <button onclick="analyzeCard()">Analyze Card</button>
+        <div id="scanResult"></div>
+    </div>
+
+    <!-- Rewards Catalog -->
+    <div class="card full-width">
+        <h2>Rewards Catalog</h2>
+        <div class="filter-pills" id="categoryFilters">
+            <span class="pill active" onclick="filterRewards(this, '')">All</span>
+        </div>
+        <div class="rewards-grid" id="rewardsCatalog">
+            <p style="color:#888">Loading rewards...</p>
+        </div>
+    </div>
+
+    <!-- Redeem -->
+    <div class="card full-width">
+        <h2>Redeem a Reward</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
+            <div style="flex:1;min-width:160px">
+                <label style="font-size:13px;color:#555;display:block;margin-bottom:4px">Card Number</label>
+                <input type="text" id="redeemCardNumber" placeholder="e.g. RC001" style="margin-bottom:0">
+            </div>
+            <div style="flex:1;min-width:160px">
+                <label style="font-size:13px;color:#555;display:block;margin-bottom:4px">Preferred Category</label>
+                <select id="preferredCategory" style="margin-bottom:0">
+                    <option value="">Select category</option>
+                    <option value="Casino">🎰 Casino</option>
+                    <option value="Dining">🍽️ Dining</option>
+                    <option value="Travel">✈️ Travel</option>
+                    <option value="Entertainment">🎭 Entertainment</option>
+                    <option value="Hotel">🏨 Hotel</option>
+                </select>
+            </div>
+            <button class="secondary" onclick="savePreference()">Save Preference</button>
+        </div>
+        <div id="selectedReward" style="margin-top:14px"></div>
+        <button onclick="redeemReward()" style="margin-top:10px">Redeem Selected Reward</button>
+        <div id="redeemResult"></div>
+    </div>
+
+</div>
+
+<footer>
+    Rewards Collection Portal | Azure App Service | Azure SQL | Azure Blob Storage | Azure AI Vision | Azure OpenAI
+    <a href="admin.html">Admin</a>
+</footer>
+
+<script src="script.js"></script>
+<script>loadRewardsCatalog();</script>
+</body>
+</html>
