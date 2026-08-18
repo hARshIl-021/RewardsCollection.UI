@@ -389,7 +389,14 @@ async function loadRecentScans() {
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function formatTime(iso) {
-    return new Date(iso).toLocaleString();
+    if (!iso) return "";
+
+    const value = String(iso);
+    const hasTimezone = /(?:Z|[+-]\d{2}:?\d{2})$/i.test(value);
+    const parsed = new Date(hasTimezone ? value : `${value}Z`);
+
+    if (Number.isNaN(parsed.getTime())) return value;
+    return parsed.toLocaleString();
 }
 
 function categoryEmoji(cat) {
